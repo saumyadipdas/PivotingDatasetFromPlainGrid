@@ -27,6 +27,14 @@ public class Node {
 		this.children = children;
 	}
 
+	
+	public Node addChildrenNode(Node parentNode, String id, String value, String hierarchyLevel, String netMTM, String tranCount) {
+		Node childNode = new Node(id, value, hierarchyLevel, netMTM, tranCount, null);
+		List<Node> childs = parentNode.getChildren();
+		childs.add(childNode);
+		parentNode.setChildren(childs);//Setting up the children Nodes!
+		return childNode;
+	}
 
 
 	
