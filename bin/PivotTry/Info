@@ -1,0 +1,35 @@
+Need to create Pivot like structure... Create a common Component
+------------------------------------------------------
+gridData : 
+[
+	{
+		id: Commodity, name: Commodity, hierarchyLevel: 0, children: [
+			{
+				id: Commodity_Agriculture, name: Agriculture, hierarchyLevel: 1, children: [
+					{
+						id: Commodity_Agriculture_Cattle, name: Cattle, hierarchyLevel: 2, children: [
+							{ id: Commodity_Agriculture_Cattle_COM Future, name: COM Future, hierarchyLevel: 3, children: [], netMTM: 10, transCount: 1}
+						], netMTM: 10, transCount: 1
+					},
+					{
+						id: Commodity_Agriculture_Cocoa, name: Cocoa, hierarchyLevel: 2, children: [
+							{ id: Commodity_Agriculture_Cocoa_COM Future, name: COM Future, hierarchyLevel: 3, children: [], netMTM: 20, transCount: 2}
+						], netMTM: 20, transCount: 2
+					}
+				], netMTM: 30, transCount: 3
+			},
+			{
+				id: Commodity_Metals, name: Metals, hierarchyLevel: 1, children: [
+					{
+						id: Commodity_Metals_Copper, name: Copper, hierarchyLevel: 2, children: [
+							{ id: Commodity_Metals_Copper_COM Future, name: COM Future, hierarchyLevel: 3, children: [], netMTM: 30, transCount: 3},
+							{ id: Commodity_Metals_Copper_COM Option Future, name: COM Option Future, hierarchyLevel: 3, children: [], netMTM: 40, transCount: 4},
+							{ id: Commodity_Metals_Copper_COM Swap, name: COM Swap, hierarchyLevel: 3, children: [], netMTM: 50, transCount: 5},
+						], netMTM: 120, transCount: 12
+					}
+				], netMTM: 120, transCount: 12
+			}
+		], netMTM: 150, transCount: 15
+	},
+	 . . . .
+]
