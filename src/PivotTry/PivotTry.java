@@ -1,6 +1,7 @@
 package PivotTry;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -36,8 +37,24 @@ public class PivotTry {
 											, Collectors.toList())
 										))));
 		System.out.println(multipleGroupByWithHawkEyeNode);
-
+		System.out.println("~~~~~~~~~~~~~~");
+		multipleGroupByWithHawkEyeNode.keySet().stream().forEach(e->System.out.println(e)); //Interest Rate, Commodity
+		System.out.println("~~~~~~~~~~~~~~");
+		multipleGroupByWithHawkEyeNode.get("Interest Rate").keySet().stream().forEach(e->System.out.println(e)); //Interest Rate, Commodity
+		multipleGroupByWithHawkEyeNode.get("Commodity").keySet().stream().forEach(e->System.out.println(e)); //Interest Rate, Commodity
+		System.out.println("~~~~~~~~~~~~~~");
+		multipleGroupByWithHawkEyeNode.get("Commodity").get("Agriculture").keySet().stream().forEach(e->System.out.println(e));
+		multipleGroupByWithHawkEyeNode.get("Commodity").get("Metals").keySet().stream().forEach(e->System.out.println(e));
+		System.out.println("~~~~~~~~~~~~~~");
+		multipleGroupByWithHawkEyeNode.get("Commodity").get("Agriculture").entrySet().stream().forEach(e->System.out.println(e));
+		multipleGroupByWithHawkEyeNode.get("Commodity").get("Metals").entrySet().stream().forEach(e->System.out.println(e));
+		System.out.println("~~~~~~~~~~~~~~");
 		
+		System.out.println("----------------------------");
+		System.out.println("----------------------------");
+		Map<Integer, String> veh = new HashMap<Integer, String>();
+		veh.put(1, "A"); veh.put(2, "B");veh.put(3, "C");veh.put(4, "D");
+		System.out.println(veh); //{1=A, 2=B, 3=C, 4=D}
 		
 	}
 
