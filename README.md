@@ -21,7 +21,40 @@ Provided dataset:
 
 
 Expected Result:
-RootNode =>
+[
+    {
+        id: Commodity, name: Commodity, hierarchyLevel: 0, children: [
+            {
+                id: Commodity_Agriculture, name: Agriculture, hierarchyLevel: 1, children: [
+                    {
+                        id: Commodity_Agriculture_Cattle, name: Cattle, hierarchyLevel: 2, children: [
+                            { id: Commodity_Agriculture_Cattle_COM Future, name: COM Future, hierarchyLevel: 3, children: [], price: 10, qty: 1}
+                        ], price: 10, qty: 1
+                    },
+                    {
+                        id: Commodity_Agriculture_Cocoa, name: Cocoa, hierarchyLevel: 2, children: [
+                            { id: Commodity_Agriculture_Cocoa_COM Future, name: COM Future, hierarchyLevel: 3, children: [], price: 20, qty: 2}
+                        ], price: 20, qty: 2
+                    }
+                ], price: 30, qty: 3
+            },
+            {
+                id: Commodity_Metals, name: Metals, hierarchyLevel: 1, children: [
+                    {
+                        id: Commodity_Metals_Copper, name: Copper, hierarchyLevel: 2, children: [
+                            { id: Commodity_Metals_Copper_COM Future, name: COM Future, hierarchyLevel: 3, children: [], price: 30, qty: 3},
+                            { id: Commodity_Metals_Copper_COM Option Future, name: COM Option Future, hierarchyLevel: 3, children: [], price: 40, qty: 4},
+                            { id: Commodity_Metals_Copper_COM Swap, name: COM Swap, hierarchyLevel: 3, children: [], price: 50, qty: 5},
+                        ], price: 120, qty: 12
+                    }
+                ], price: 120, qty: 12
+            }
+        ], price: 150, qty: 15
+    },
+     . . . .
+]
+i.e. =========>
+RootNode:
 [Node [id=Commodity, value=Commodity, hierarchyLevel=0, netMTM=150.0, tranCount=15, children=
  [Node [id=Commodity_Metals, value=Metals, hierarchyLevel=1, netMTM=120.0, tranCount=12, children= 
   [Node [id=Commodity_Metals_Copper, value=Copper, hierarchyLevel=2, netMTM=120.0, tranCount=12, children=
