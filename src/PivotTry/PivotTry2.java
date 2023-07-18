@@ -88,6 +88,10 @@ public class PivotTry2 {
 										/*** For Second Level childrens ******/
 										//Adding children of Second Level!
 										nodeL2.setChildren(thirdLevelChilds);
+										Double summationNetMtm = thirdLevelChilds.stream().mapToDouble(o->Double.parseDouble(o.getNetMTM())).sum();
+										int summationTransCount = thirdLevelChilds.stream().mapToInt(o->Integer.parseInt(o.getTranCount())).sum();
+										nodeL2.setNetMTM(summationNetMtm+"");
+										nodeL2.setTranCount(summationTransCount+"");
 									}
 								});
 							});
@@ -96,6 +100,10 @@ public class PivotTry2 {
 							/*** For First Level childrens ******/
 							//Adding children of First Level!
 							nodeL1.setChildren(secondLevelChilds);
+							Double summationNetMtm = secondLevelChilds.stream().mapToDouble(o->Double.parseDouble(o.getNetMTM())).sum();
+							int summationTransCount = secondLevelChilds.stream().mapToInt(o->Integer.parseInt(o.getTranCount())).sum();
+							nodeL1.setNetMTM(summationNetMtm+"");
+							nodeL1.setTranCount(summationTransCount+"");
 						}
 					};
 				});
@@ -105,6 +113,12 @@ public class PivotTry2 {
 				/*** For Root Level childrens ******/
 				//Adding children of First Level!
 				pNode.setChildren(firstLevelChilds);
+				
+				Double summationNetMtm = firstLevelChilds.stream().mapToDouble(o->Double.parseDouble(o.getNetMTM())).sum();
+				int summationTransCount = firstLevelChilds.stream().mapToInt(o->Integer.parseInt(o.getTranCount())).sum();
+				pNode.setNetMTM(summationNetMtm+"");
+				pNode.setTranCount(summationTransCount+"");
+				
 				parent.add(pNode);
 
 			});
