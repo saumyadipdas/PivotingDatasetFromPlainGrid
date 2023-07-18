@@ -19,7 +19,7 @@ Provided dataset:
 ![image](https://github.com/saumyadipdas/PivotingDatasetFromPlainGrid/assets/39150957/67fda30e-0093-473b-889a-1f0683e6b2d4)
 
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 Expected Result:
 [
     {
@@ -53,7 +53,12 @@ Expected Result:
     },
      . . . .
 ]
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 i.e. =========>
+
 RootNode:
 [Node [id=Commodity, value=Commodity, hierarchyLevel=0, netMTM=150.0, tranCount=15, children=
  [Node [id=Commodity_Metals, value=Metals, hierarchyLevel=1, netMTM=120.0, tranCount=12, children= 
@@ -81,5 +86,6 @@ Node [id=Interest Rate, value=Interest Rate, hierarchyLevel=0, netMTM=60.0, tran
 ]
 
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 My StackOverFlow query: https://stackoverflow.com/questions/76709224/how-to-create-nested-nodes-objects-from-a-plain-arraylist-in-java
