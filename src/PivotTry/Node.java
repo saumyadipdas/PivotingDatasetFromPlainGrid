@@ -40,6 +40,7 @@ public class Node {
 	
 
 
+	/*** Important!!! Or else GroupingBy result is erroneous ***/
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -99,7 +100,7 @@ public class Node {
 
 	@Override
 	public String toString() {
-		return "HawkeyeNode [id=" + id + ", value=" + value + ", hierarchyLevel=" + hierarchyLevel + ", netMTM="
+		return "Node [id=" + id + ", value=" + value + ", hierarchyLevel=" + hierarchyLevel + ", netMTM="
 				+ netMTM + ", tranCount=" + tranCount + ", children=" + children + "]";
 	}
 

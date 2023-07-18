@@ -41,6 +41,8 @@ public class PivotTry2 {
 //		veh.put(1, "A"); veh.put(2, "B");veh.put(3, "C");veh.put(4, "D");
 //		System.out.println(veh); //{1=A, 2=B, 3=C, 4=D}
 		
+		
+		System.out.println("-------------------------------------------------------------");
 		System.out.println(createTree(multipleGroupByWithHawkEyeNode));
 		
 	}
@@ -58,7 +60,7 @@ public class PivotTry2 {
 
 			multipleGroupByWithHawkEyeNode.forEach((rootKey, rootValue) ->
 			{
-				Node pNode = new Node (rootKey.getId(), rootKey.getHierarchyLevel(), rootKey.getValue(), null, null, null);
+				Node pNode = new Node (rootKey.getId(), rootKey.getValue(), rootKey.getHierarchyLevel(), null, null, null);
 
 				//Fetch 2nd Level depth data
 				List<Node> firstLevelChilds = rootValue.keySet().stream().collect(Collectors.toList());
@@ -66,42 +68,37 @@ public class PivotTry2 {
 				/*******************************************************************************/
 				/** Later on Try on with Recursion **/
 				/** Third Level depth data (For Hierarchy - 2) **/
-//				firstLevelChilds.stream().forEach(nodeL1 -> {
-//					
-//					
-//					
-//					
-//					
-//
-//					multipleGroupByWithHawkEyeNode.get(pNode).forEach((l2Key, l2Value) -> {
-//						if(nodeL1.getId() .equalsIgnoreCase(l2Key.getId())) {
-//							//Fetch 3rd Level depth data
-//							List<Node> secondLevelChilds = l2Value.keySet().stream().collect(Collectors.toList());
-//
-//							/*******************************************************************************/
-//							/** Later on Try on with Recursion **/
-//							/** Fourth Level depth data (For Hierarchy - 3) **/
-//							secondLevelChilds.stream().forEach(nodeL2 -> {
-//
-//								multipleGroupByWithHawkEyeNode.get(pNode).get(nodeL1).forEach((l3Key, l3Value) -> {
-//									if(nodeL2.getId() .equalsIgnoreCase(l3Key.getId())) {
-//										//Fetch 4th Level depth data
-//										List<Node> thirdLevelChilds = l3Value.stream().collect(Collectors.toList());
-//
-//										/*** For Second Level childrens ******/
-//										//Adding children of Second Level!
-//										nodeL2.setChildren(thirdLevelChilds);
-//									}
-//								});
-//							});
-//							/*******************************************************************************/
-//
-//							/*** For First Level childrens ******/
-//							//Adding children of First Level!
-//							nodeL1.setChildren(secondLevelChilds);
-//						}
-//					});
-//				});
+				firstLevelChilds.stream().forEach(nodeL1 -> {
+				
+					for(Entry<Node, Map<Node, List<Node>>> l2Entry : multipleGroupByWithHawkEyeNode.get(pNode).entrySet()) {
+						if(nodeL1.getId() .equalsIgnoreCase(l2Entry.getKey().getId())) {
+							//Fetch 3rd Level depth data
+							List<Node> secondLevelChilds = l2Entry.getValue().keySet().stream().collect(Collectors.toList());
+
+							/*******************************************************************************/
+							/** Later on Try on with Recursion **/
+							/** Fourth Level depth data (For Hierarchy - 3) **/
+							secondLevelChilds.stream().forEach(nodeL2 -> {
+
+								multipleGroupByWithHawkEyeNode.get(pNode).get(nodeL1).forEach((l3Key, l3Value) -> {
+									if(nodeL2.getId() .equalsIgnoreCase(l3Key.getId())) {
+										//Fetch 4th Level depth data
+										List<Node> thirdLevelChilds = l3Value.stream().collect(Collectors.toList());
+
+										/*** For Second Level childrens ******/
+										//Adding children of Second Level!
+										nodeL2.setChildren(thirdLevelChilds);
+									}
+								});
+							});
+							/*******************************************************************************/
+
+							/*** For First Level childrens ******/
+							//Adding children of First Level!
+							nodeL1.setChildren(secondLevelChilds);
+						}
+					};
+				});
 				/*******************************************************************************/
 
 
