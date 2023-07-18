@@ -24,11 +24,12 @@ public class NetMTMScannerTable {
 	}
 	
 	
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
+//	@Override
+//	public int hashCode() {
+//		// TODO Auto-generated method stub
+//		return super.hashCode();
+//	}
+	
 	
 	
 	@Override
@@ -36,6 +37,63 @@ public class NetMTMScannerTable {
 		return "CounterpartyNetMTMScannerTable [nettingGroup2=" + nettingGroup2 + ", nettingGroup3=" + nettingGroup3
 				+ ", nettingGroup4=" + nettingGroup4 + ", saccrTypology=" + saccrTypology + ", netMTM=" + netMTM
 				+ ", transactionCount=" + transactionCount + "] \n";
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((netMTM == null) ? 0 : netMTM.hashCode());
+		result = prime * result + ((nettingGroup2 == null) ? 0 : nettingGroup2.hashCode());
+		result = prime * result + ((nettingGroup3 == null) ? 0 : nettingGroup3.hashCode());
+		result = prime * result + ((nettingGroup4 == null) ? 0 : nettingGroup4.hashCode());
+		result = prime * result + ((saccrTypology == null) ? 0 : saccrTypology.hashCode());
+		result = prime * result + ((transactionCount == null) ? 0 : transactionCount.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NetMTMScannerTable other = (NetMTMScannerTable) obj;
+		if (netMTM == null) {
+			if (other.netMTM != null)
+				return false;
+		} else if (!netMTM.equals(other.netMTM))
+			return false;
+		if (nettingGroup2 == null) {
+			if (other.nettingGroup2 != null)
+				return false;
+		} else if (!nettingGroup2.equals(other.nettingGroup2))
+			return false;
+		if (nettingGroup3 == null) {
+			if (other.nettingGroup3 != null)
+				return false;
+		} else if (!nettingGroup3.equals(other.nettingGroup3))
+			return false;
+		if (nettingGroup4 == null) {
+			if (other.nettingGroup4 != null)
+				return false;
+		} else if (!nettingGroup4.equals(other.nettingGroup4))
+			return false;
+		if (saccrTypology == null) {
+			if (other.saccrTypology != null)
+				return false;
+		} else if (!saccrTypology.equals(other.saccrTypology))
+			return false;
+		if (transactionCount == null) {
+			if (other.transactionCount != null)
+				return false;
+		} else if (!transactionCount.equals(other.transactionCount))
+			return false;
+		return true;
 	}
 
 

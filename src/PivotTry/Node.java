@@ -18,7 +18,7 @@ public class Node {
 	
 	public Node(String id, String value, String hierarchyLevel, String netMTM, String tranCount,
 			List<Node> children) {
-		super();
+		//super();
 		this.id = id;
 		this.value = value;
 		this.hierarchyLevel = hierarchyLevel;
@@ -38,6 +38,63 @@ public class Node {
 
 
 	
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((children == null) ? 0 : children.hashCode());
+		result = prime * result + ((hierarchyLevel == null) ? 0 : hierarchyLevel.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((netMTM == null) ? 0 : netMTM.hashCode());
+		result = prime * result + ((tranCount == null) ? 0 : tranCount.hashCode());
+		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Node other = (Node) obj;
+		if (children == null) {
+			if (other.children != null)
+				return false;
+		} else if (!children.equals(other.children))
+			return false;
+		if (hierarchyLevel == null) {
+			if (other.hierarchyLevel != null)
+				return false;
+		} else if (!hierarchyLevel.equals(other.hierarchyLevel))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (netMTM == null) {
+			if (other.netMTM != null)
+				return false;
+		} else if (!netMTM.equals(other.netMTM))
+			return false;
+		if (tranCount == null) {
+			if (other.tranCount != null)
+				return false;
+		} else if (!tranCount.equals(other.tranCount))
+			return false;
+		if (value == null) {
+			if (other.value != null)
+				return false;
+		} else if (!value.equals(other.value))
+			return false;
+		return true;
+	}
 
 
 	@Override
