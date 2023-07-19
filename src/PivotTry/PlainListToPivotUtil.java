@@ -71,14 +71,14 @@ public class PlainListToPivotUtil {
 
 	private static void createPivotDatSetFromPlainList(List<NetMTMScannerTable> tableDataPlainList) {
 		Map<Node, Map<Node, Map<Node, List<Node>>>> multipleGroupByWithHawkEyeNodeFinal = tableDataPlainList.stream()
-				.collect(Collectors.groupingBy((a-> new Node(a.getNettingGroup2(), a.getNettingGroup2(), "0", null, null, null)),
-						Collectors.groupingBy((a-> new Node(a.getNettingGroup2()+"_"+a.getNettingGroup3(), a.getNettingGroup3(), "1", null, null, null)),
-								Collectors.groupingBy((a-> new Node(a.getNettingGroup2()+"_"+a.getNettingGroup3()+"_"+a.getNettingGroup4(), a.getNettingGroup4(), "2", null, null, null)),
-										Collectors.mapping(a-> new Node(a.getNettingGroup2()+"_"+a.getNettingGroup3()+"_"+a.getNettingGroup4()+"_"+a.getSaccrTypology(), a.getSaccrTypology(), "3", 
-												a.getNetMTM(), a.getTransactionCount(), null)
+				.collect(Collectors.groupingBy((a-> new Node(a.getNettingGroup2(), "0", new DataFields(a.getNettingGroup2(), null, null), null)),
+						Collectors.groupingBy((a-> new Node(a.getNettingGroup2()+"_"+a.getNettingGroup3(), "1", new DataFields(a.getNettingGroup3(), null, null), null)),
+								Collectors.groupingBy((a-> new Node(a.getNettingGroup2()+"_"+a.getNettingGroup3()+"_"+a.getNettingGroup4(), "2", new DataFields(a.getNettingGroup4(), null, null), null)),
+										Collectors.mapping(a-> new Node(a.getNettingGroup2()+"_"+a.getNettingGroup3()+"_"+a.getNettingGroup4()+"_"+a.getSaccrTypology(), "3", 
+												new DataFields(a.getSaccrTypology(), a.getNetMTM(), a.getTransactionCount()), null)
 											, Collectors.toList())
 										))));
-		System.out.println(multipleGroupByWithHawkEyeNodeFinal);
+		//System.out.println(multipleGroupByWithHawkEyeNodeFinal);
 		System.out.println(createTree(multipleGroupByWithHawkEyeNodeFinal));
 	}
 
@@ -92,7 +92,7 @@ public class PlainListToPivotUtil {
 
 			multipleGroupByWithHawkEyeNode.forEach((rootKey, rootValue) ->
 			{
-				Node pNode = new Node (rootKey.getId(), rootKey.getValue(), rootKey.getHierarchyLevel(), null, null, null);
+				Node pNode = new Node (rootKey.getId(), rootKey.getHierarchyLevel(), rootKey.getDatafields(), null);
 
 				//Fetch 2nd Level depth data
 				List<Node> firstLevelChilds = rootValue.keySet().stream().collect(Collectors.toList());
@@ -120,10 +120,11 @@ public class PlainListToPivotUtil {
 										/*** For Second Level childrens ******/
 										//Adding children of Second Level!
 										nodeL2.setChildren(thirdLevelChilds);
-										Double summationNetMtm = thirdLevelChilds.stream().mapToDouble(o->Double.parseDouble(o.getNetMTM())).sum();
-										int summationTransCount = thirdLevelChilds.stream().mapToInt(o->Integer.parseInt(o.getTranCount())).sum();
-										nodeL2.setNetMTM(summationNetMtm+"");
-										nodeL2.setTranCount(summationTransCount+"");
+										Double summationNetMtm = thirdLevelChilds.stream().mapToDouble(o->Double.parseDouble(o.getDatafields().getNetMTM())).sum();
+										int summationTransCount = thirdLevelChilds.stream().mapToInt(o->Integer.parseInt(o.getDatafields().getTranCount())).sum();
+//										nodeL2.setNetMTM(summationNetMtm+"");
+//										nodeL2.setTranCount(summationTransCount+"");
+										nodeL2.setDatafields(new DataFields(nodeL2.getDatafields().getValue(), summationNetMtm+"", summationTransCount+""));
 									}
 								});
 							});
@@ -132,10 +133,11 @@ public class PlainListToPivotUtil {
 							/*** For First Level childrens ******/
 							//Adding children of First Level!
 							nodeL1.setChildren(secondLevelChilds);
-							Double summationNetMtm = secondLevelChilds.stream().mapToDouble(o->Double.parseDouble(o.getNetMTM())).sum();
-							int summationTransCount = secondLevelChilds.stream().mapToInt(o->Integer.parseInt(o.getTranCount())).sum();
-							nodeL1.setNetMTM(summationNetMtm+"");
-							nodeL1.setTranCount(summationTransCount+"");
+							Double summationNetMtm = secondLevelChilds.stream().mapToDouble(o->Double.parseDouble(o.getDatafields().getNetMTM())).sum();
+							int summationTransCount = secondLevelChilds.stream().mapToInt(o->Integer.parseInt(o.getDatafields().getTranCount())).sum();
+//							nodeL1.setNetMTM(summationNetMtm+"");
+//							nodeL1.setTranCount(summationTransCount+"");
+							nodeL1.setDatafields(new DataFields(nodeL1.getDatafields().getValue(), summationNetMtm+"", summationTransCount+""));
 						}
 					};
 				});
@@ -146,10 +148,11 @@ public class PlainListToPivotUtil {
 				//Adding children of First Level!
 				pNode.setChildren(firstLevelChilds);
 				
-				Double summationNetMtm = firstLevelChilds.stream().mapToDouble(o->Double.parseDouble(o.getNetMTM())).sum();
-				int summationTransCount = firstLevelChilds.stream().mapToInt(o->Integer.parseInt(o.getTranCount())).sum();
-				pNode.setNetMTM(summationNetMtm+"");
-				pNode.setTranCount(summationTransCount+"");
+				Double summationNetMtm = firstLevelChilds.stream().mapToDouble(o->Double.parseDouble(o.getDatafields().getNetMTM())).sum();
+				int summationTransCount = firstLevelChilds.stream().mapToInt(o->Integer.parseInt(o.getDatafields().getTranCount())).sum();
+//				pNode.setNetMTM(summationNetMtm+"");
+//				pNode.setTranCount(summationTransCount+"");
+				pNode.setDatafields(new DataFields(pNode.getDatafields().getValue(), summationNetMtm+"", summationTransCount+""));
 				
 				parent.add(pNode);
 

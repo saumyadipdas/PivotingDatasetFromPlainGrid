@@ -5,36 +5,43 @@ import java.util.List;
 public class Node {
 
 	private String id; //Values will be concatenated with depth!
-	private String value;
 	private String hierarchyLevel;
-	private String netMTM;
-	private String tranCount;
+	private DataFields datafields;
 	
 	List<Node> children;
 
 	
-	
-	
-	
-	public Node(String id, String value, String hierarchyLevel, String netMTM, String tranCount,
-			List<Node> children) {
-		//super();
+	public Node(String id, String hierarchyLevel, DataFields datafields, List<Node> children) {
+		super();
 		this.id = id;
-		this.value = value;
 		this.hierarchyLevel = hierarchyLevel;
-		this.netMTM = netMTM;
-		this.tranCount = tranCount;
+		this.datafields = datafields;
 		this.children = children;
 	}
 
 	
-	public Node addChildrenNode(Node parentNode, String id, String value, String hierarchyLevel, String netMTM, String tranCount) {
-		Node childNode = new Node(id, value, hierarchyLevel, netMTM, tranCount, null);
-		List<Node> childs = parentNode.getChildren();
-		childs.add(childNode);
-		parentNode.setChildren(childs);//Setting up the children Nodes!
-		return childNode;
-	}
+	
+	
+	
+//	public Node(String id, String value, String hierarchyLevel, String netMTM, String tranCount,
+//			List<Node> children) {
+//		//super();
+//		this.id = id;
+//		this.value = value;
+//		this.hierarchyLevel = hierarchyLevel;
+//		this.netMTM = netMTM;
+//		this.tranCount = tranCount;
+//		this.children = children;
+//	}
+
+	
+//	public Node addChildrenNode(Node parentNode, String id, String value, String hierarchyLevel, String netMTM, String tranCount) {
+//		Node childNode = new Node(id, value, hierarchyLevel, netMTM, tranCount, null);
+//		List<Node> childs = parentNode.getChildren();
+//		childs.add(childNode);
+//		parentNode.setChildren(childs);//Setting up the children Nodes!
+//		return childNode;
+//	}
 
 
 	
@@ -46,14 +53,11 @@ public class Node {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((children == null) ? 0 : children.hashCode());
+		result = prime * result + ((datafields == null) ? 0 : datafields.hashCode());
 		result = prime * result + ((hierarchyLevel == null) ? 0 : hierarchyLevel.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((netMTM == null) ? 0 : netMTM.hashCode());
-		result = prime * result + ((tranCount == null) ? 0 : tranCount.hashCode());
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -69,6 +73,11 @@ public class Node {
 				return false;
 		} else if (!children.equals(other.children))
 			return false;
+		if (datafields == null) {
+			if (other.datafields != null)
+				return false;
+		} else if (!datafields.equals(other.datafields))
+			return false;
 		if (hierarchyLevel == null) {
 			if (other.hierarchyLevel != null)
 				return false;
@@ -79,129 +88,50 @@ public class Node {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (netMTM == null) {
-			if (other.netMTM != null)
-				return false;
-		} else if (!netMTM.equals(other.netMTM))
-			return false;
-		if (tranCount == null) {
-			if (other.tranCount != null)
-				return false;
-		} else if (!tranCount.equals(other.tranCount))
-			return false;
-		if (value == null) {
-			if (other.value != null)
-				return false;
-		} else if (!value.equals(other.value))
-			return false;
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Node [id=" + id + ", value=" + value + ", hierarchyLevel=" + hierarchyLevel + ", netMTM="
-				+ netMTM + ", tranCount=" + tranCount + ", children=" + children + "]";
+		return "Node [id=" + id + ", hierarchyLevel=" + hierarchyLevel + ", datafields=" + datafields + ", children="
+				+ children + "]";
 	}
 
-
-
-
-
-
-
-
+	
+	
 	public String getId() {
 		return id;
 	}
-
-
-
-
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
-
-
-
-
-	public String getValue() {
-		return value;
-	}
-
-
-
-
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
-
-
-
-
 	public String getHierarchyLevel() {
 		return hierarchyLevel;
 	}
-
-
-
-
 
 	public void setHierarchyLevel(String hierarchyLevel) {
 		this.hierarchyLevel = hierarchyLevel;
 	}
 
-
-
-
-
-	public String getNetMTM() {
-		return netMTM;
+	public DataFields getDatafields() {
+		return datafields;
 	}
 
-
-
-
-
-	public void setNetMTM(String netMTM) {
-		this.netMTM = netMTM;
+	public void setDatafields(DataFields datafields) {
+		this.datafields = datafields;
 	}
-
-
-
-
-
-	public String getTranCount() {
-		return tranCount;
-	}
-
-
-
-
-
-	public void setTranCount(String tranCount) {
-		this.tranCount = tranCount;
-	}
-
-
-
-
 
 	public List<Node> getChildren() {
 		return children;
 	}
 
-
-
-
-
 	public void setChildren(List<Node> children) {
 		this.children = children;
 	}
+
+	
 	
 	
 	
